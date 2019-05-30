@@ -23,15 +23,16 @@ public class MessageRollDice implements IMessage {
     public MessageRollDice(EnumDiceType typeIn, int n) {
         this.type = typeIn;
         this.nDice = n;
-        System.out.println("this.nDice in constructor = " + this.nDice);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.type = EnumDiceType.fromRange(buf.readByte());
+        this.nDice = buf.readInt();
     }
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeByte(this.type.range);
+        buf.writeInt(this.nDice);
     }
 }
