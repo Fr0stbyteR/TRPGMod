@@ -9,12 +9,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        TRPGRenderer.register();
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+        TRPGRenderer.register();
     }
 
     @Override
