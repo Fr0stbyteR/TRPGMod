@@ -27,7 +27,8 @@ public abstract class ItemDice extends Item {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
-        if (!worldIn.isRemote) NetworkHandler.INSTANCE.sendToServer(new MessageRollDice(this.diceType));
+        System.out.println("stack.getCount() = " + stack.getCount());
+        if (!worldIn.isRemote) NetworkHandler.INSTANCE.sendToServer(new MessageRollDice(this.diceType, stack.getCount()));
     }
 
     @Override
