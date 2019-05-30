@@ -11,26 +11,20 @@ public class MessageRollDiceHandler implements IMessageHandler<MessageRollDice, 
     @Override
     public IMessage onMessage(MessageRollDice message, MessageContext ctx) {
         EnumDiceType diceType = message.type;
-        int numberDice = message.nDice;
-        System.out.println("message.nDice in Handler = " + message.nDice);
+        int diceCount = message.count;
         int sum = 0;
         int rolled;
         String rolledText = "";
-        for(int i = 0; i < numberDice; i++){
-            rolled = (int) (Math.floor(Math.random() * diceType.range) + 1);
+        for (int i = 0; i < diceCount; i++){
+            rolled = (int) Math.floor(Math.random() * diceType.range + 1);
             sum += rolled;
-            if(i == numberDice - 1){
-                rolledText += rolled;
-            }else{
-                rolledText += rolled + " + ";
-            }
+            if (i == diceCount - 1) rolledText += rolled;
+            else rolledText += rolled + " + ";
         }
-        if(numberDice != 1){
-            rolledText += " = " + sum;
-        }
+        if (diceCount != 1) rolledText += " = " + sum;
         EntityPlayerMP player = ctx.getServerHandler().player;
         String playerName = player.getName();
-        String text = playerName + " rolled " + numberDice + diceType.name() + ": " + rolledText;
+        String text = playerName + " rolled " + diceCount + diceType.name() + ": " + rolledText;
         ctx.getServerHandler().player.sendMessage(new TextComponentString(text));
         return null;
     }

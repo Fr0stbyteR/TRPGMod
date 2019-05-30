@@ -6,33 +6,37 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class MessageRollDice implements IMessage {
     public EnumDiceType type;
-    public int nDice;
+    public int count;
 
     public MessageRollDice() {
         this.type = EnumDiceType.D6;
-        this.nDice = 1;
+        this.count = 1;
     }
+
     public MessageRollDice(EnumDiceType typeIn) {
         this.type = typeIn;
-        this.nDice = 1;
+        this.count = 1;
     }
-    public MessageRollDice(int n) {
+
+    public MessageRollDice(int countIn) {
         this.type = EnumDiceType.D6;
-        this.nDice = n;
+        this.count = countIn;
     }
-    public MessageRollDice(EnumDiceType typeIn, int n) {
+
+    public MessageRollDice(EnumDiceType typeIn, int countIn) {
         this.type = typeIn;
-        this.nDice = n;
+        this.count = countIn;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.type = EnumDiceType.fromRange(buf.readByte());
-        this.nDice = buf.readInt();
+        this.count = buf.readInt();
     }
+
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeByte(this.type.range);
-        buf.writeInt(this.nDice);
+        buf.writeInt(this.count);
     }
 }
