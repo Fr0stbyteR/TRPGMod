@@ -25,7 +25,7 @@ public class MessageRollDiceHandler implements IMessageHandler<MessageRollDice, 
         EntityPlayerMP player = ctx.getServerHandler().player;
         String playerName = player.getName();
         String text = playerName + " rolled " + diceCount + diceType.name() + ": " + rolledText;
-        ctx.getServerHandler().player.sendMessage(new TextComponentString(text));
+        player.sendMessage(new TextComponentString(text));
         return null;
     }
 }
