@@ -26,5 +26,5 @@ run
 gradle
 classes
 gradlew
-!src/*
+!src/**
 !.gitignore
