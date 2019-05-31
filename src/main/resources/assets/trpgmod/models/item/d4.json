@@ -1,5 +1,5 @@
 {
-    "parent": "item/generated",
+    "parent": "trpgmod:item/dice",
     "textures": {
         "layer0": "trpgmod:item/d4"
     }
